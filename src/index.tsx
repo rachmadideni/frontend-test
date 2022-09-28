@@ -4,11 +4,15 @@ import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material'
+import { theme } from './styles/theme'
 
 ReactDOM.render(
-  <React.StrictMode>    
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App />    
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )
