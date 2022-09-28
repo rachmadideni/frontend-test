@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import styled from '@emotion/styled'
+import { styled } from '@mui/material/styles';
 
 import {
     Card,
@@ -10,46 +10,39 @@ import {
 } from '@mui/material'
 
 import { useTheme } from '@mui/material/styles'
-import { theme } from '../../styles/theme'
-
 
 type StyleCardProps = {
     isChecked: boolean,
     children: React.ReactNode
 }
 
-const StyledBaseCard = styled(Card)`
-    width:229px;
-    height:150px;    
-    border-radius: 6px;
-    :hover {
-        box-shadow: 0px 0px 0px 2px ${theme.palette.primary.light};
+const StyledBaseCard = styled(Card)(({ theme }) => ({
+    width: 229,
+    height: 150,
+    borderRadius: theme.spacing(1),
+    border: `1px inset ${theme.palette.grey}`,
+    '&:hover': {
+        boxShadow: `0px 0px 0px 2px ${theme.palette.success.light}`
     }
-`
+
+}))
 
 const StyledCard = (props: StyleCardProps) => {
     const theme = useTheme()
+    const { isChecked, children } = props;
 
     const styles = {
-        base: {
-            width: '229px',
-            height:'150px',            
-            border: `1px inset ${theme.palette.grey[200]}`
-        },
         selectedCardStyles: {
-            boxShadow: `0px 0px 0px 2px ${theme.palette.primary.dark}`
-        },        
+            boxShadow: `0px 0px 0px 2px ${theme.palette.success.dark}`
+        },
     }
-
-    const { isChecked } = props;
 
     return (
         <StyledBaseCard
             sx={{
-                ...styles.base,                
-                ...(isChecked ? styles.selectedCardStyles : '')                
+                ...(isChecked ? styles.selectedCardStyles : '')
             }}>
-            {props.children}
+            {children}
         </StyledBaseCard>
     )
 }
@@ -82,7 +75,7 @@ const CustomCard: FC<ICustomCard> = () => {
                     control={
                         <Checkbox
                             disableRipple
-                            color="primary"
+                            color="success"
                             checked={isChecked}
                             onChange={() => setIsChecked(prevState => !prevState)} />}
                     label="Flood zone 3"

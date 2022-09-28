@@ -3,16 +3,12 @@ import ReactDOM from "react-dom"
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline';
-import { theme } from './styles/theme'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
+  <React.StrictMode>    
       <CssBaseline />
-      <App />
-    </MuiThemeProvider>
+      <App />    
   </React.StrictMode>,
   document.getElementById("root")
 )
